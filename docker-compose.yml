@@ -1,0 +1,31 @@
+services:
+  web:
+    build: .
+    container_name: success-academy-web
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/success_academy
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - ./uploads:/app/uploads
+      - /app/node_modules        # ensure container’s node_modules isn’t overwritten
+    command: ["npm", "run", "dev"]  # use Next’s dev server
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: success-academy-db
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: success_academy
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:
