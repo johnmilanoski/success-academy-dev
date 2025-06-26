@@ -87,7 +87,23 @@ const pgRepo: Repo = {
        RETURNING id`,
       [studentId, courseId, amount]
     );
-    return rows[0].id;
+    const purchaseId = rows[0].id;
+
+    const { rows: cRows } = await pool.query<{ instructor_id: number }>(
+      'SELECT instructor_id FROM courses WHERE id = $1',
+      [courseId]
+    );
+    const instructorId = cRows[0]?.instructor_id;
+    if (instructorId) {
+      await pool.query('SELECT distribute_commission($1,$2,$3,$4)', [
+        purchaseId,
+        courseId,
+        amount,
+        instructorId,
+      ]);
+    }
+
+    return purchaseId;
   },
 
   async instructorEarnings(instructorId) {
