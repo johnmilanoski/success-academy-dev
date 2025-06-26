@@ -9,3 +9,4 @@ sudo apt-get install -y nodejs
 
 # Install project dependencies
 npm install
+npm run lint

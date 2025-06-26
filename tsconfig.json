@@ -1,43 +1,46 @@
 {
   "compilerOptions": {
+    /* Language & libraries */
     "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    /* Type-safety flags */
+    "strict": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Module system — NodeNext everywhere */
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+
+    /* Project structure */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"]
+    },
+
+    /* Extras that were already present */
+    "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "*"
-      ]
-    },
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+
+    /* Explicitly tell TS to load both Node & Next declaration packs */
+    "types": ["node", "next"],
+
+    /* Let Next’s custom TS plugin keep doing its optimisations */
+    "plugins": [{ "name": "next" }]
   },
+
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
