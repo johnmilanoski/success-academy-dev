@@ -43,10 +43,10 @@ Next.js API routes ───▶ PostgreSQL
                          └─ views (earnings, down‑line)
 ```
 
-### Folder Map *(after running **`setup_full_stack.sh`**)*
+### Folder Map 
 
 ```txt
-success-academy-chatgpt45/
+success-academy-dev/
 ├─ app/                       # Next.js src
 │  ├─ api/                    # server routes (TS)
 │  │   ├─ auth/               # signup, login, logout
@@ -71,9 +71,6 @@ success-academy-chatgpt45/
 ## 4. Local Setup
 
 ```bash
-# clone & bootstrap
-chmod +x setup_full_stack.sh
-./setup_full_stack.sh         # writes all files
 
 docker-compose up --build -d  # builds web & db containers
 
@@ -229,7 +226,7 @@ git pull origin main
 ### 5 · Sync Codex Environment
 
 ```bash
-cd /workspace/success-academy-chatgpt45
+cd /workspace/success-academy-dev
 git pull origin main
 
 npm ci
