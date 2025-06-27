@@ -5,7 +5,7 @@
 
 import { Pool } from "pg";
 import type { Repo } from "./types";
-import type { Course, Instructor, Purchase } from "./models";
+import type { Course, Instructor } from "./models";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
