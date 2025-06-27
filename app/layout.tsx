@@ -1,5 +1,16 @@
 import "@/app/globals.css";
 import Layout from "@/components/Layout";
+import localFont from "next/font/local";
+
+const geist = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist",
+});
+
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+});
 
 export const metadata = {
   title: "Success Academy",
@@ -12,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>\
+      <body className="font-sans">
         <Layout>{children}</Layout>
       </body>
     </html>

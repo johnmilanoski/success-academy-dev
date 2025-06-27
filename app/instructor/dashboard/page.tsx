@@ -11,8 +11,8 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Instructor Dashboard</h1>
+    <div className="space-y-8">
+      <h1 className="text-3xl font-bold">Instructor Dashboard</h1>
 
       <section className="grid gap-4 sm:grid-cols-3">
         <Card title="Total Earnings">${stats.earnings}</Card>
@@ -20,7 +20,7 @@ export default function Dashboard() {
         <Card title="Pending Payout">{stats.pending}</Card>
       </section>
 
-      <section className="rounded-xl border bg-white p-4 shadow">
+      <section className="rounded-xl border bg-white p-6 shadow">
         <h2 className="mb-2 text-sm font-semibold text-slate-600">
           Earnings – Last 30 Days
         </h2>
