@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 
 export default function Step1() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: unknown) => console.log(data);
 
   return (
     <div className="max-w-xl">
