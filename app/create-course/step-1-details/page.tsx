@@ -1,6 +1,9 @@
 "use client";
 import { useForm } from "react-hook-form";
 import Stepper from "@/components/Stepper";
+import Input from "@/components/Input";
+import Textarea from "@/components/Textarea";
+import Button from "@/components/Button";
 
 export default function Step1() {
   const { register, handleSubmit } = useForm();
@@ -13,24 +16,13 @@ export default function Step1() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="mb-1 block text-sm">Title</label>
-          <input
-            {...register("title", { required: true })}
-            className="w-full rounded border px-3 py-2"
-          />
+          <Input {...register("title", { required: true })} />
         </div>
         <div>
           <label className="mb-1 block text-sm">Description</label>
-          <textarea
-            {...register("description", { required: true })}
-            className="h-28 w-full rounded border px-3 py-2"
-          />
+          <Textarea {...register("description", { required: true })} className="h-28" />
         </div>
-        <button
-          type="submit"
-          className="rounded bg-blue-600 px-4 py-2 text-white"
-        >
-          Save & Next
-        </button>
+        <Button type="submit">Save & Next</Button>
       </form>
     </div>
   );

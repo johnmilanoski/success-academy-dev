@@ -13,8 +13,8 @@ export default function Catalog() {
   }, []);
 
   return (
-    <div>
-      <h1 className="mb-6 text-2xl font-bold">Catalog</h1>
+    <div className="space-y-8">
+      <h1 className="text-3xl font-bold">Catalog</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data.map((c) => (
