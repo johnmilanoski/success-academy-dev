@@ -17,9 +17,22 @@ export default function Header() {
           FAQ
         </Link>
       </nav>
-      <div>
+      <div className="flex items-center gap-4">
+        <form>
+          <input
+            type="search"
+            placeholder="Search courses..."
+            className="rounded-md border bg-transparent px-3 py-1.5 text-sm"
+          />
+        </form>
         <Link href="/login" className="hover:underline text-sm">
           Login
+        </Link>
+        <Link
+          href="/signup"
+          className="rounded-md bg-blue-500 px-4 py-1.5 text-sm text-white"
+        >
+          Sign Up
         </Link>
       </div>
     </header>

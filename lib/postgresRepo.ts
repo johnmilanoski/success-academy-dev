@@ -74,7 +74,14 @@ const pgRepo: Repo = {
 
   async catalog() {
     const { rows } = await pool.query<Course>(
-      "SELECT id, title, price, instructor_id FROM courses WHERE published_at IS NOT NULL"
+      "SELECT id, title, price, category, instructor_id FROM courses WHERE published_at IS NOT NULL"
+    );
+    return rows;
+  },
+
+  async getTopCourses() {
+    const { rows } = await pool.query<Course>(
+      "SELECT id, title, price, category, instructor_id FROM courses WHERE published_at IS NOT NULL LIMIT 4"
     );
     return rows;
   },

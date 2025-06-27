@@ -13,7 +13,8 @@ services:
       - /app/node_modules        # ensure container’s node_modules isn’t overwritten
     command: ["npm", "run", "dev"]  # use Next’s dev server
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: postgres:15
@@ -26,6 +27,11 @@ services:
       - ./database:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d success_academy"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:

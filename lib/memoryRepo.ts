@@ -42,6 +42,9 @@ const memoryRepo: Repo = {
   async catalog() {
     return courses.filter(c => c.published_at !== null);
   },
+  async getTopCourses() {
+    return courses.filter(c => c.published_at !== null).slice(0, 4);
+  },
 
   /* ------ Purchases ------ */
   async recordPurchase(studentId, courseId, amount) {

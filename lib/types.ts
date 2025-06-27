@@ -13,6 +13,7 @@ export interface Repo {
   listInstructorCourses(instructorId: number): Promise<Course[]>;
   publishCourse(id: number): Promise<void>;
   catalog(): Promise<Course[]>;
+  getTopCourses(): Promise<Course[]>;
 
   /* ------ Purchases ------ */
   recordPurchase(
