@@ -1,0 +1,39 @@
+# ─── Builder: install deps & build ───────────────────────────────────
+FROM node:20-slim AS builder
+WORKDIR /app
+
+# Tell npm to ignore peer-dependency conflicts
+RUN npm config set legacy-peer-deps true
+
+# Copy only what we need
+COPY package*.json ./
+COPY tsconfig.json next.config.ts postcss.config.js tailwind.config.ts ./
+
+# bring in all of your source
+COPY components/ ./components
+COPY lib/        ./lib
+COPY app/        ./app
+COPY public/     ./public
+
+RUN npm ci
+
+RUN npm run build --if-present
+
+
+# ─── Runner stage: ship only what we need to run ──────────────────────────
+FROM node:20-slim AS runner
+
+WORKDIR /app
+
+# Copy production deps and build output from builder
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.ts ./
+
+EXPOSE 3000
+ENV NODE_ENV=production
+
+# Start the Next.js server
+CMD ["npm", "run", "start"]

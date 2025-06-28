@@ -11,19 +11,19 @@ export default function Page() {
 
   useEffect(() => {
     fetch("/api/courses/top")
-      .then((r) => r.json())
-      .then((d) => setTopCourses(d.data));
+      .then((res) => res.json())
+      .then((data) => setTopCourses(data.data));
 
     fetch("/api/courses/categories")
-      .then((r) => r.json())
-      .then((d) => {
-        setCategories(d.data);
-        setActiveCategory(d.data[0]);
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.data);
+        setActiveCategory(data.data[0]);
       });
 
     fetch("/api/student/catalog")
-      .then((r) => r.json())
-      .then((d) => setCourses(d.data));
+      .then((res) => res.json())
+      .then((data) => setCourses(data.data));
   }, []);
 
   const filteredCourses = activeCategory

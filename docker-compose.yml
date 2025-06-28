@@ -1,10 +1,12 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     container_name: success-academy-web
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/success_academy
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/success_academy?ssl=false
     ports:
       - "3000:3000"
     volumes:
