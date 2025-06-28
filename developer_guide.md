@@ -65,7 +65,31 @@ success-academy-dev/
 ├─ Dockerfile & docker-compose.yml
 └─ README.md / DEVELOPER_GUIDE.md
 ```
+```
 
+## 🤖 AI WORKFLOW — Codex & Local CLI
+*Rules that every AI helper must follow when editing or running this repo.*
+
+| Tool / Context       | Allowed to…                                | Must **NOT**…                                                    |
+|----------------------|--------------------------------------------|------------------------------------------------------------------|
+| **GitHub Codex**     | • Edit files, open PRs                     | • Run shell/Docker commands<br>• Touch `Dockerfile*`, `database/*.sql` |
+| **Local AI CLI**     | • Read / write files<br>• **Execute** `docker`, `npm`, `psql` | • Commit if `npm run lint && npm run typecheck` fails            |
+
+### 1 · Canonical Commands
+```bash
+# Dev stack (hot-reload on port 3001)
+docker compose -f docker-compose.dev.yml up -d web db
+
+# Stop stack
+docker compose down
+
+# Prod-like image test
+docker compose up --build web
+
+# Install JS deps inside running container
+docker compose exec web npm ci
+
+```
 ---
 
 ## 4. Local Setup
